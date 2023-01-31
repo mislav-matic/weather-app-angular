@@ -1,0 +1,59 @@
+.day {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #1e1e1e;
+  color: #fff;
+  width: 104px;
+  height: 168px;
+  box-shadow: 1px 2px 4px #222831;
+  border-radius: 10px;
+  cursor: pointer;
+
+  .icon {
+    i {
+      justify-content: center;
+      display: flex;
+      margin-top: 15px;
+      color: #fff;
+    }
+
+    i.active {
+      color: #1e1e1e;
+    }
+  }
+  .day-name {
+    align-items: center;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    font-family: "Montserrat";
+    font-style: normal;
+    color: #fff;
+  }
+
+  .day-name.active {
+    color: #000000;
+  }
+
+  .celsius {
+    font-family: "Montserrat";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #fff;
+  }
+
+  .celsius.active {
+    color: #000000;
+  }
+}
+
+.day.active {
+  background-color: #fff;
+  color: #1e1e1e;
+}

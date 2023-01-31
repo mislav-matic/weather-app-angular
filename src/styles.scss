@@ -1,0 +1,42 @@
+body {
+  position: relative;
+  background-color: #1e1e1e;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 34px;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 600px) {
+    position: inherit;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e1e1e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4952b1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4952b1;
+}
+
+.hidden {
+  display: none;
+}
+
+.expand {
+  flex: 1;
+}

@@ -1,0 +1,105 @@
+<div class="container" *ngIf="activeDayChanged$ | async as activeDayChanged">
+  <div class="right-pane">
+    <div class="right-container">
+      <div class="headings">
+        <div class="first-element">
+          <span>PRECIPITATION</span>
+          <span>{{ activeDayChanged.precipitation }} %</span>
+        </div>
+        <div class="second-element">
+          <span>HUMIDITY</span>
+          <span>{{ activeDayChanged.humidity }} %</span>
+        </div>
+        <div class="third-element">
+          <span>WIND</span>
+          <span>{{ activeDayChanged.wind }} km/h</span>
+        </div>
+        <div class="imaginary-weather-container">
+          <div
+            class="imaginary-weather-condition"
+            *ngIf="dayConditions$ | async as dayConditions"
+            [ngClass]="{ loaded: loadState === 'loaded' }"
+          >
+            <div class="messages">
+              <div class="loading message" *ngIf="loadState === 'loading'">
+                Loading weather information...
+              </div>
+            </div>
+            <div class="day-weather-container" *ngIf="loadState === 'loaded'">
+              <app-day-weather
+                *ngFor="let condition of dayConditions"
+                [dayCondition]="condition"
+                [allDays]="dayConditions"
+              >
+              </app-day-weather>
+            </div>
+          </div>
+        </div>
+
+        <div class="button-container" *ngIf="loadState !== 'input'">
+          <div class="button" (click)="getCustomLocation()">
+            <img src="../assets/images/bigger-location-icon.png" />
+            <span>Change Location</span>
+          </div>
+        </div>
+        <div class="input-container" *ngIf="loadState === 'input'">
+          <div class="input-with-location">
+            <img src="../assets/images/bigger-location-icon.png" />
+            <input
+              type="text"
+              placeholder="New York, USA"
+              [(ngModel)]="locationInput"
+              (keydown.enter)="applyLocation()"
+            />
+          </div>
+          <div class="input-error" *ngIf="customLocationError">
+            Incorrect city. Example: New York, USA
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="left-pane">
+    <div class="content">
+      <div class="heading">
+        <div class="general-info">
+          <span class="header">{{ activeDayChanged.dayInWeek }}</span>
+          <span class="date">{{
+            activeDayChanged.date | date : "dd MMM y"
+          }}</span>
+          <div class="location clickable" onclick="">
+            <img src="../assets/images/location.png" alt="Location pin" />
+            <span
+              >{{ activeDayChanged.city }}, {{ activeDayChanged.country }}</span
+            >
+          </div>
+        </div>
+        <div class="weather-info">
+          <div class="weather-condition">
+            <i
+              class="fas fa-solid fa-cloud"
+              [ngClass]="{ active: activeDayChanged.active }"
+              *ngIf="activeDayChanged.weatherCondition === 'cloudy'"
+            ></i>
+            <i
+              class="fa-solid fa-sun"
+              [ngClass]="{ active: activeDayChanged.active }"
+              *ngIf="activeDayChanged.weatherCondition === 'sunny'"
+            ></i>
+            <i
+              class="fa-solid fa-cloud-showers-heavy"
+              [ngClass]="{ active: activeDayChanged.active }"
+              *ngIf="activeDayChanged.weatherCondition === 'rain'"
+            ></i>
+          </div>
+          <div class="temperature">
+            <span>{{ activeDayChanged.degrees }} °C</span>
+          </div>
+          <div class="textual-condition">
+            <span>{{ activeDayChanged.weatherCondition }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

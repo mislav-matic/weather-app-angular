@@ -1,0 +1,29 @@
+<div
+  class="day"
+  [ngClass]="{ active: dayCondition.active }"
+  (click)="changeActiveDate()"
+>
+  <div class="icon">
+    <i
+      class="fas fa-solid fa-cloud"
+      [ngClass]="{ active: dayCondition.active }"
+      *ngIf="dayCondition.weatherCondition === 'cloudy'"
+    ></i>
+    <i
+      class="fa-solid fa-sun"
+      [ngClass]="{ active: dayCondition.active }"
+      *ngIf="dayCondition.weatherCondition === 'sunny'"
+    ></i>
+    <i
+      class="fa-solid fa-cloud-showers-heavy"
+      [ngClass]="{ active: dayCondition.active }"
+      *ngIf="dayCondition.weatherCondition === 'rain'"
+    ></i>
+  </div>
+  <div class="day-name" [ngClass]="{ active: dayCondition.active }">
+    <span>{{ dayCondition.dayInWeek | shortDay }}</span>
+  </div>
+  <div class="celsius" [ngClass]="{ active: dayCondition.active }">
+    <span>{{ dayCondition.degrees }} °C</span>
+  </div>
+</div>
